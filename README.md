@@ -1,5 +1,5 @@
 # adHabitat
-# First, 
-Install requirements.
-# Then,
-Contact owner for more information.
+# First 
+Install Requirements
+# Second
+Contact Owner for More Information
