@@ -3,7 +3,13 @@ import { DinosaurService } from '../../services/dinosaurService'
 
 @Component({
   selector: 'dinosaurs',
-  template: `<ul><li *ngFor="let dino of dinos">{{dino.species}} - {{dino.campaing}} - {{dino.avg_ctr}} - {{dino.avg_cr}}</li></ul>
+  template: `<!--
+            <ul><li *ngFor="let dino of dinos">
+              {{dino.species}} - {{dino.campaing}} - {{dino.avg_ctr}} - {{dino.avg_cr}}
+            </li></ul>
+            -->
+            <span style="text-align: center; font-family:Verdana;">
+            <h1>AD Habitat </h1>
             <chart [options]="optionDefault">
             </chart>
             <chart [options]="optionDinosaurs">

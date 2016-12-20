@@ -37,36 +37,36 @@ export class AppComponent {
       0.00010670081092616304, 0.0, 0.00044137119317345886, 0.0, 0.0, 0.0, 0.000590876861262113, 0.0, 0.002755388471177944,
       0.0012453300124533001, 8.5287846481876332e-05, 0.0015839493136219642]
       generateData(ctr, names, cr) {
-            let ret = {},
-                ps = [],
-                series = [],
-                len = ctr.length;
+          let ret = {},
+              ps = [],
+              series = [],
+              len = ctr.length;
 
-            //concat to get cr
-            for (var i = 0; i < len; i++) {
-                ps[i] = {
-                    x: ctr[i],
-                    y: cr[i],
-                    n: names[i]
-                };
-            }
-            names = [];
-            //generate series and split cr
-            for (i = 0; i < len; i++) {
-                var p = ps[i],
-                    sIndex = names.indexOf(p.n);
+          //concat to get cr
+          for (var i = 0; i < len; i++) {
+              ps[i] = {
+                  x: ctr[i],
+                  y: cr[i],
+                  n: names[i]
+              };
+          }
+          names = [];
+          //generate series and split cr
+          for (i = 0; i < len; i++) {
+              var p = ps[i],
+                  sIndex = names.indexOf(p.n);
 
-                if (sIndex < 0) {
-                    sIndex = names.push(p.n) - 1;
-                    series.push({
-                        name: p.n,
-                        data: []
-                    });
-                }
-                series[sIndex].data.push(p);
-            }
-            return series;
-        }
+              if (sIndex < 0) {
+                  sIndex = names.push(p.n) - 1;
+                  series.push({
+                      name: p.n,
+                      data: []
+                  });
+              }
+              series[sIndex].data.push(p);
+          }
+          return series;
+      }
       series = this.generateData(this.avg_cr, this.campaings, this.avg_ctr);
 
   constructor() {
@@ -116,6 +116,7 @@ export class AppComponent {
 
   draw_chart(e) {
     for (let campaign of this.campaings){
+      alert(campaign);
       if (e == campaign) {
         this.optionk = {
           chart: {

@@ -132,7 +132,7 @@ var DinosaurComponent = (function () {
 DinosaurComponent = __decorate([
     Component({
         selector: 'dinosaurs',
-        template: "<ul><li *ngFor=\"let dino of dinos\">{{dino.species}} - {{dino.campaing}} - {{dino.avg_ctr}} - {{dino.avg_cr}}</li></ul>\n            <chart [options]=\"optionDefault\">\n            </chart>\n            <chart [options]=\"optionDinosaurs\">\n            </chart>"
+        template: "<!--\n            <ul><li *ngFor=\"let dino of dinos\">\n              {{dino.species}} - {{dino.campaing}} - {{dino.avg_ctr}} - {{dino.avg_cr}}\n            </li></ul>\n            -->\n            <span style=\"text-align: center; font-family:Verdana;\">\n            <h1>AD Habitat </h1>\n            <chart [options]=\"optionDefault\">\n            </chart>\n            <chart [options]=\"optionDinosaurs\">\n            </chart>"
     }),
     __metadata("design:paramtypes", [DinosaurService])
 ], DinosaurComponent);

@@ -96,6 +96,7 @@ var AppComponent = (function () {
     AppComponent.prototype.draw_chart = function (e) {
         for (var _i = 0, _a = this.campaings; _i < _a.length; _i++) {
             var campaign = _a[_i];
+            alert(campaign);
             if (e == campaign) {
                 this.optionk = {
                     chart: {
