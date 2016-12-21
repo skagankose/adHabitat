@@ -7,7 +7,8 @@ import { KeywordService } from '../../services/keywordService'
 
 @Component({
   selector: 'dinosaurs',
-  template: `<!--
+  template: `
+            <!--
             <ul><li *ngFor="let dino of dinos">
               {{dino.species}} - {{dino.campaing}} - {{dino.avg_ctr}} - {{dino.avg_cr}}
             </li></ul>
@@ -19,7 +20,8 @@ import { KeywordService } from '../../services/keywordService'
             <chart [options]="optionDinosaurs">
             </chart>
             <chart [options]="optionTable">
-            </chart>`
+            </chart>
+            `
 })
 export class DinosaurComponent implements OnInit {
 
@@ -56,6 +58,7 @@ export class DinosaurComponent implements OnInit {
             };
         }
         names = [];
+
         //generate series and split cr
         for (i = 0; i < len; i++) {
             var p = ps[i],
@@ -75,10 +78,6 @@ export class DinosaurComponent implements OnInit {
 
     drawAdGroups(e) {
 
-          // this.getAdGroups(()=>{
-          //   console.log(this.adGroups)
-          // })
-
          this.getTheCampaing(e.n,()=>{
 
               var adTitle: string[] = [];
@@ -86,22 +85,15 @@ export class DinosaurComponent implements OnInit {
               var adCR: number[] = [];
 
               for (let adGroupURL of this.theCampaing['adGroups']) {
+
                 // console.log(url);
                 this.getAdGroups(adGroupURL, ()=> {
-
-                  // for (let keyword of this.adGroups['keywords']) {
-                  //   console.log(keyword);
-                  // }
 
                   // console.log(this.adGroups['keywords']);
                   // console.log(this.adGroups['ctr']);
                   // console.log(this.adGroups['cr']);
-
                   // console.log(this.adGroups);
                   // console.log(typeof(this.adGroups));
-                  // for(var anAdGroup in this.adGroups) {
-                  //   console.log(anAdGroup);
-                  // }
 
                   var myString: string = String(this.adGroups['title']);
                   adTitle.push(myString);
@@ -133,14 +125,16 @@ export class DinosaurComponent implements OnInit {
                           point: {
                             events: {
                               click: function(event) {
-                              // that.writeKeywords();
+
                               // console.log(this.options);
                               that.getTheGroup(this.options.n,()=>{
+
                                 // console.log(that.theGroup);
                                 var keywordTerm: string[] = [];
                                 var keywordCTR: number[] = [];
                                 var keywordCR: number[] = [];
                                 for (let keywordURL of that.theGroup['keywords']) {
+
                                   // console.log(keywordURL);
                                   that.getKeywords(keywordURL, ()=> {
 
@@ -151,10 +145,7 @@ export class DinosaurComponent implements OnInit {
                                     var termsCR: number = Number(that.keywords['cr']);
                                     keywordCR.push(termsCR);
 
-                                    // that.thirdSeries = that.generateData(termsCR, keywordTerm, keywordCTR);
-
                                     // console.log(that.keywords['ctr']);
-
                                     that.optionTable = {
                                       chart: {
                                           type: 'bar'
@@ -201,15 +192,11 @@ export class DinosaurComponent implements OnInit {
                                           name: 'CR',
                                           data: keywordCR
                                       }]
-                                  }
+                                    }
 
                                   })
-
                                 }
                               })
-                              //  that.getKeywords(this.options.n,()=>{
-                              //   console.log(that.keywords);
-                              //  })
                             }
                           }
                         }
@@ -221,23 +208,7 @@ export class DinosaurComponent implements OnInit {
             }
           })
 
-          // console.log(e.n);
-
-        //   this.optionDinosaurs = {
-        //     chart: {
-        //       type: 'column'
-        //     },
-        //     xAxis: {
-        //       categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-        //     },
-        //     series: [{
-        //              data: [
-        //                     {y: 10.9,}, {y: 10.5,}, {y: 10.4,},
-        //                     {y: 10.4,}, {y: 10.4,}, {y: 9.0,},
-        //                     {y: 7.2,}, {y: 6.3,}, {y: 10.4,}
-        //                    ]
-        //             }]
-        // }
+        // console.log(e.n);
 
     }
 
