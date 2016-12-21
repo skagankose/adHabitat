@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DinosaurComponent } from './components/dinosaur/dinosaurs'
 import { DinosaurService } from './services/dinosaurService'
+import { AdGroupService } from './services/adGroupService'
+import { SingleCampaingService } from './services/singleCampaingService'
+import { KeywordService } from './services/keywordService'
 
 @Component({
   selector: 'app-root',
@@ -104,7 +107,7 @@ export class AppComponent {
               events: {
                 click: function(event) {
                   that.draw_chart(this.options.n);
-                //this.draw_chart(1);
+                  //this.draw_chart(1);
               }
             }
           }
@@ -116,7 +119,6 @@ export class AppComponent {
 
   draw_chart(e) {
     for (let campaign of this.campaings){
-      alert(campaign);
       if (e == campaign) {
         this.optionk = {
           chart: {

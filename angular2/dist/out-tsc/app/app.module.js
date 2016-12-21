@@ -15,6 +15,10 @@ import { AppComponent } from './app.component';
 import { ChartModule } from 'angular2-highcharts';
 import { DinosaurComponent } from './components/dinosaur/dinosaurs';
 import { DinosaurService } from './services/dinosaurService';
+import { AdGroupService } from './services/adGroupService';
+import { SingleCampaingService } from './services/singleCampaingService';
+import { SingleGroupService } from './services/singleGroupService';
+import { KeywordService } from './services/keywordService';
 var AppModule = (function () {
     function AppModule() {
     }
@@ -32,7 +36,9 @@ AppModule = __decorate([
             HttpModule,
             ChartModule,
         ],
-        providers: [DinosaurService],
+        providers: [DinosaurService, AdGroupService,
+            SingleCampaingService, KeywordService,
+            SingleGroupService],
         bootstrap: [AppComponent, DinosaurComponent]
     }),
     __metadata("design:paramtypes", [])

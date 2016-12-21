@@ -6,6 +6,10 @@ import { AppComponent } from './app.component';
 import { ChartModule } from 'angular2-highcharts';
 import { DinosaurComponent } from './components/dinosaur/dinosaurs'
 import { DinosaurService } from './services/dinosaurService'
+import { AdGroupService } from './services/adGroupService'
+import { SingleCampaingService } from './services/singleCampaingService'
+import { SingleGroupService } from './services/singleGroupService'
+import { KeywordService } from './services/keywordService'
 
 @NgModule({
   declarations: [
@@ -18,7 +22,9 @@ import { DinosaurService } from './services/dinosaurService'
     HttpModule,
     ChartModule,
   ],
-  providers: [DinosaurService],
+  providers: [DinosaurService, AdGroupService,
+              SingleCampaingService, KeywordService,
+              SingleGroupService],
   bootstrap: [AppComponent, DinosaurComponent]
 })
 export class AppModule { }

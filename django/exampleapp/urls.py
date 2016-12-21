@@ -19,6 +19,8 @@ from dinosaurs import views
 
 router = routers.DefaultRouter()
 router.register(r'dinosaurs', views.DinosaurViewSet)
+router.register(r'adGroups', views.AdGroupViewSet)
+router.register(r'keywords', views.KeywordViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.

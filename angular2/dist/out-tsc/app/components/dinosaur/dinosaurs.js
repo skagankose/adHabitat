@@ -9,66 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Component } from '@angular/core';
 import { DinosaurService } from '../../services/dinosaurService';
+import { AdGroupService } from '../../services/adGroupService';
+import { SingleCampaingService } from '../../services/singleCampaingService';
+import { SingleGroupService } from '../../services/singleGroupService';
+import { KeywordService } from '../../services/keywordService';
 var DinosaurComponent = (function () {
-    function DinosaurComponent(dinosaurService) {
-        var _this = this;
+    function DinosaurComponent(dinosaurService, adGroupService, singleCampaingService, singleGroupService, keywordService) {
         this.dinosaurService = dinosaurService;
+        this.adGroupService = adGroupService;
+        this.singleCampaingService = singleCampaingService;
+        this.singleGroupService = singleGroupService;
+        this.keywordService = keywordService;
         this.series = [];
-        this.dinosaurService
-            .getDinos()
-            .then(function (dinos) {
-            _this.dinos = dinos;
-            var ads = [];
-            var ctr = [];
-            var cr = [];
-            for (var _i = 0, dinos_1 = dinos; _i < dinos_1.length; _i++) {
-                var dino = dinos_1[_i];
-                var myString = String(dino.species);
-                ads.push(myString);
-                var myCTR = Number(dino.avg_ctr);
-                ctr.push(myCTR);
-                var myCR = Number(dino.avg_cr);
-                cr.push(myCR);
-            }
-            _this.series = _this.generateData(cr, ads, ctr);
-            var that = _this;
-            _this.optionDefault = {
-                chart: {
-                    type: 'scatter',
-                    zoomType: 'xy'
-                },
-                title: {
-                    text: 'Avg CTR and CR of Campaigns'
-                },
-                legend: {
-                    enabled: false
-                },
-                xAxis: {
-                    title: {
-                        enabled: true,
-                        text: 'Avg CTR'
-                    },
-                },
-                yAxis: {
-                    title: {
-                        text: ' Avg CR'
-                    }
-                },
-                plotOptions: {
-                    scatter: {
-                        cursor: 'pointer',
-                        point: {
-                            events: {
-                                click: function (event) {
-                                    that.draw_chart(this.options.n);
-                                }
-                            }
-                        }
-                    }
-                },
-                series: that.series
-            };
-        });
+        this.secondarySeries = [];
+        this.thirdSeries = [];
     }
     DinosaurComponent.prototype.generateData = function (ctr, names, cr) {
         var ret = {}, ps = [], series = [], len = ctr.length;
@@ -93,48 +47,226 @@ var DinosaurComponent = (function () {
         }
         return series;
     };
-    DinosaurComponent.prototype.draw_chart = function (e) {
-        console.log(e);
-        this.optionDinosaurs = {
-            chart: {
-                type: 'column'
-            },
-            xAxis: {
-                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-            },
-            series: [{
-                    data: [{
-                            y: 10.9,
-                        }, {
-                            y: 10.5,
-                        }, {
-                            y: 10.4,
-                        }, {
-                            y: 10.4,
-                        }, {
-                            y: 10.4,
-                        }, {
-                            y: 9.0,
-                        }, {
-                            y: 7.2,
-                        }, {
-                            y: 6.3,
-                        }, {
-                            y: 10.4,
-                        }]
-                }]
-        };
+    DinosaurComponent.prototype.drawAdGroups = function (e) {
+        var _this = this;
+        this.getTheCampaing(e.n, function () {
+            var adTitle = [];
+            var adCTR = [];
+            var adCR = [];
+            for (var _i = 0, _a = _this.theCampaing['adGroups']; _i < _a.length; _i++) {
+                var adGroupURL = _a[_i];
+                _this.getAdGroups(adGroupURL, function () {
+                    var myString = String(_this.adGroups['title']);
+                    adTitle.push(myString);
+                    var myCTR = Number(_this.adGroups['ctr']);
+                    adCTR.push(myCTR);
+                    var myCR = Number(_this.adGroups['cr']);
+                    adCR.push(myCR);
+                    _this.secondarySeries = _this.generateData(adCR, adTitle, adCTR);
+                    var that = _this;
+                    _this.optionDinosaurs = {
+                        chart: {
+                            type: 'scatter',
+                            zoomType: 'xy'
+                        },
+                        title: { text: 'Avg CTR and CR of Ad Groups' },
+                        legend: { enabled: false },
+                        xAxis: {
+                            title: {
+                                enabled: true,
+                                text: 'Avg CTR'
+                            },
+                        },
+                        yAxis: { title: { text: ' Avg CR' } },
+                        plotOptions: {
+                            scatter: {
+                                cursor: 'pointer',
+                                point: {
+                                    events: {
+                                        click: function (event) {
+                                            that.getTheGroup(this.options.n, function () {
+                                                var keywordTerm = [];
+                                                var keywordCTR = [];
+                                                var keywordCR = [];
+                                                for (var _i = 0, _a = that.theGroup['keywords']; _i < _a.length; _i++) {
+                                                    var keywordURL = _a[_i];
+                                                    that.getKeywords(keywordURL, function () {
+                                                        var termsString = String(that.keywords['terms']);
+                                                        keywordTerm.push(termsString);
+                                                        var termsCTR = Number(that.keywords['ctr']);
+                                                        keywordCTR.push(termsCTR);
+                                                        var termsCR = Number(that.keywords['cr']);
+                                                        keywordCR.push(termsCR);
+                                                        that.optionTable = {
+                                                            chart: {
+                                                                type: 'bar'
+                                                            },
+                                                            title: {
+                                                                text: 'Keywords with Features'
+                                                            },
+                                                            xAxis: {
+                                                                categories: keywordTerm,
+                                                                title: {
+                                                                    text: null
+                                                                }
+                                                            },
+                                                            yAxis: {
+                                                                min: 0,
+                                                                title: {
+                                                                    text: 'Rate',
+                                                                },
+                                                            },
+                                                            plotOptions: {
+                                                                bar: {
+                                                                    dataLabels: {
+                                                                        enabled: true
+                                                                    }
+                                                                }
+                                                            },
+                                                            legend: {
+                                                                layout: 'vertical',
+                                                                align: 'right',
+                                                                verticalAlign: 'top',
+                                                                x: -40,
+                                                                y: 80,
+                                                                floating: true,
+                                                                borderWidth: 1,
+                                                                shadow: true
+                                                            },
+                                                            credits: {
+                                                                enabled: false
+                                                            },
+                                                            series: [{
+                                                                    name: 'CTR',
+                                                                    data: keywordCTR
+                                                                }, {
+                                                                    name: 'CR',
+                                                                    data: keywordCR
+                                                                }]
+                                                        };
+                                                    });
+                                                }
+                                            });
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        series: _this.secondarySeries
+                    };
+                });
+            }
+        });
+    };
+    DinosaurComponent.prototype.getCampaings = function (callback) {
+        var _this = this;
+        this.dinosaurService
+            .getDinos()
+            .then(function (dinos) {
+            _this.dinos = dinos;
+            callback();
+        })
+            .catch(function (error) { return _this.error = error; });
+    };
+    DinosaurComponent.prototype.getAdGroups = function (url, callback) {
+        var _this = this;
+        this.adGroupService
+            .getData(url)
+            .then(function (adGroups) {
+            _this.adGroups = adGroups;
+            callback();
+        })
+            .catch(function (error) { return _this.error = error; });
+    };
+    DinosaurComponent.prototype.getTheCampaing = function (pk, callback) {
+        var _this = this;
+        this.singleCampaingService
+            .getData(pk)
+            .then(function (theCampaing) {
+            _this.theCampaing = theCampaing;
+            callback();
+        })
+            .catch(function (error) { return _this.error = error; });
+    };
+    DinosaurComponent.prototype.getTheGroup = function (pk, callback) {
+        var _this = this;
+        this.singleGroupService
+            .getData(pk)
+            .then(function (theGroup) {
+            _this.theGroup = theGroup;
+            callback();
+        })
+            .catch(function (error) { return _this.error = error; });
+    };
+    DinosaurComponent.prototype.getKeywords = function (url, callback) {
+        var _this = this;
+        this.keywordService
+            .getData(url)
+            .then(function (keywords) {
+            _this.keywords = keywords;
+            callback();
+        })
+            .catch(function (error) { return _this.error = error; });
     };
     DinosaurComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.getCampaings(function () {
+            var ads = [];
+            var ctr = [];
+            var cr = [];
+            for (var _i = 0, _a = _this.dinos; _i < _a.length; _i++) {
+                var dino = _a[_i];
+                var myString = String(dino.species);
+                ads.push(myString);
+                var myCTR = Number(dino.avg_ctr);
+                ctr.push(myCTR);
+                var myCR = Number(dino.avg_cr);
+                cr.push(myCR);
+            }
+            _this.series = _this.generateData(cr, ads, ctr);
+            var that = _this;
+            _this.optionDefault = {
+                chart: {
+                    type: 'scatter',
+                    zoomType: 'xy'
+                },
+                title: { text: 'Avg CTR and CR of Campaigns' },
+                legend: { enabled: false },
+                xAxis: {
+                    title: {
+                        enabled: true,
+                        text: 'Avg CTR'
+                    },
+                },
+                yAxis: { title: { text: ' Avg CR' } },
+                plotOptions: {
+                    scatter: {
+                        cursor: 'pointer',
+                        point: {
+                            events: {
+                                click: function (event) {
+                                    that.drawAdGroups(this.options);
+                                }
+                            }
+                        }
+                    }
+                },
+                series: that.series
+            };
+        });
     };
     return DinosaurComponent;
 }());
 DinosaurComponent = __decorate([
     Component({
         selector: 'dinosaurs',
-        template: "<!--\n            <ul><li *ngFor=\"let dino of dinos\">\n              {{dino.species}} - {{dino.campaing}} - {{dino.avg_ctr}} - {{dino.avg_cr}}\n            </li></ul>\n            -->\n            <span style=\"text-align: center; font-family:Verdana;\">\n            <h1>AD Habitat </h1>\n            <chart [options]=\"optionDefault\">\n            </chart>\n            <chart [options]=\"optionDinosaurs\">\n            </chart>"
+        template: "<!--\n            <ul><li *ngFor=\"let dino of dinos\">\n              {{dino.species}} - {{dino.campaing}} - {{dino.avg_ctr}} - {{dino.avg_cr}}\n            </li></ul>\n            -->\n            <span style=\"text-align: center; font-family:Verdana;\">\n            <h1>AD Habitat </h1>\n            <chart [options]=\"optionDefault\">\n            </chart>\n            <chart [options]=\"optionDinosaurs\">\n            </chart>\n            <chart [options]=\"optionTable\">\n            </chart>"
     }),
-    __metadata("design:paramtypes", [DinosaurService])
+    __metadata("design:paramtypes", [DinosaurService,
+        AdGroupService,
+        SingleCampaingService,
+        SingleGroupService,
+        KeywordService])
 ], DinosaurComponent);
 export { DinosaurComponent };
 //# sourceMappingURL=../../../../../src/app/components/dinosaur/dinosaurs.js.map
