@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from dinosaurs.serializers import DinosaurSerializer, AdGroupSerializer, KeywordSerializer
-from dinosaurs.models import Dinosaur, AdGroup, Keyword
+from dinosaurs.serializers import DinosaurSerializer, AdGroupSerializer, KeywordSerializer,RecommendationSerializer
+from dinosaurs.models import Dinosaur, AdGroup, Keyword,Recommendation
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -27,6 +27,13 @@ class KeywordViewSet(viewsets.ModelViewSet):
     """
     queryset = Keyword.objects.all()
     serializer_class = KeywordSerializer
+
+class RecommendationViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Recommendation.objects.all()
+    serializer_class = RecommendationSerializer
 
 @api_view(['POST'])
 @csrf_exempt

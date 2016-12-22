@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+  </head>
+<body>
+<h2>RECOMMENDATIONS</h2>
+
+<!-- <ul class="recos">
+<li *ngFor="let reco of recommendations" (click)="onSelect(reco)"
+    [class.selected]="reco === selectedRecommendation">
+  <span class="badge">{{reco.ctr}}</span>
+  <span>{{reco.keyword}}</span>
+  <button class="delete"
+    (click)="delete(reco); $event.stopPropagation()">x</button>
+</li>
+</ul> -->
+<div class = 'col-md-4'>
+<table class="table table-hover table-inverse" >
+  <thead>
+    <tr>
+      <th>Keywords</th>
+      <th>CTR</th>
+      <th>CR</th>
+      <th></th>
+    </tr>
+  </thead>
+<tbody>
+
+<tr  *ngFor="let reco of recommendations">
+  <!-- <span class="badge">{{reco.id}}</span> -->
+  <td >{{reco.keyword}}</td>
+  <td>{{reco.ctr}}</td>
+  <td>{{reco.cr}}</td>
+  <td>          <button class="delete"
+            (click)="reco.hideElement=!reco.hideElement">x</button></td>
+
+</tbody>
+</table>
+</div>
+
+
+
+</body>
+</html>

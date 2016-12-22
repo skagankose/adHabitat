@@ -24,3 +24,8 @@ class Dinosaur(models.Model):
     avg_ctr = models.FloatField(default="0.0")
     avg_cr = models.FloatField(default="0.0")
     adGroups = models.ManyToManyField(AdGroup, blank=True, null=True)
+
+class Recommendation(models.Model):
+    keyword = models.TextField()
+    ctr = models.FloatField(default="0.0")
+    cr = models.FloatField(default="0.0")

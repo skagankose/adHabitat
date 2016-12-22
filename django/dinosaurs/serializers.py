@@ -1,4 +1,4 @@
-from dinosaurs.models import Dinosaur, AdGroup, Keyword
+from dinosaurs.models import Dinosaur, AdGroup, Keyword,Recommendation
 from rest_framework import serializers
 
 
@@ -16,3 +16,8 @@ class KeywordSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Keyword
         fields = ('terms', 'ctr', 'cr')
+
+class RecommendationSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Recommendation
+        fields = ("id", "keyword", "ctr", "cr")

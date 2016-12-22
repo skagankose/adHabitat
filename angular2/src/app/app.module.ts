@@ -11,6 +11,8 @@ import { SingleCampaingService } from './services/singleCampaingService'
 import { SingleGroupService } from './services/singleGroupService'
 import { KeywordService } from './services/keywordService'
 import { RouterModule }   from '@angular/router';
+import { RecommendationComponent } from './components/recommendation/recommendations'
+import { RecommendationService } from './services/recommendationService'
 import { FileUploadComponent } from './components/file-upload/file-upload.component'
 
 
@@ -18,6 +20,7 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
   declarations: [
     AppComponent,
     DinosaurComponent,
+    RecommendationComponent,
     FileUploadComponent
   ],
   imports: [
@@ -44,7 +47,7 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
   ],
   providers: [DinosaurService, AdGroupService,
               SingleCampaingService, KeywordService,
-              SingleGroupService],
-  bootstrap: [AppComponent, DinosaurComponent]
+              SingleGroupService,RecommendationService],
+  bootstrap: [AppComponent, DinosaurComponent,RecommendationComponent]
 })
 export class AppModule { }
