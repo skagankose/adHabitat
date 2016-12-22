@@ -13,14 +13,23 @@ import { KeywordService } from '../../services/keywordService'
               {{dino.species}} - {{dino.campaing}} - {{dino.avg_ctr}} - {{dino.avg_cr}}
             </li></ul>
             -->
-            <span style="text-align: center; font-family:Verdana;">
-            <h1>AD Habitat </h1>
-            <chart [options]="optionDefault">
-            </chart>
-            <chart [options]="optionDinosaurs">
-            </chart>
-            <chart [options]="optionTable">
-            </chart>
+              <div class="row">
+                <div class="col-xs-6" style="border-right:solid #EEEEEE;border-width: 1.5px;">
+                  <chart [options]="optionDefault">
+                  </chart>
+                </div>
+                <div class="col-xs-6">
+                  <chart [options]="optionDinosaurs">
+                  </chart>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+              <div class="col-xs-12">
+                <chart [options]="optionTable">
+                </chart>
+              </div>
+              </div>
             `
 })
 export class DinosaurComponent implements OnInit {
@@ -108,17 +117,19 @@ export class DinosaurComponent implements OnInit {
                   this.optionDinosaurs = {
                     chart: {
                       type: 'scatter',
-                      zoomType: 'xy'
+                      zoomType: 'xy',
+                      width: 450,
+                      height: 300,
                     },
-                    title:  {text: 'Avg CTR and CR of Ad Groups'},
+                    title:  {text: 'Ad Groups'},
                     legend: {enabled: false},
                     xAxis:  {
                       title: {
                         enabled: true,
-                        text: 'Avg CTR'
+                        text: 'CTR'
                       },
                     },
-                    yAxis: {title: {text: ' Avg CR'}},
+                    yAxis: {title: {text: 'CR'}},
                     plotOptions: {
                       scatter: {
                         cursor: 'pointer',
@@ -148,10 +159,15 @@ export class DinosaurComponent implements OnInit {
                                     // console.log(that.keywords['ctr']);
                                     that.optionTable = {
                                       chart: {
-                                          type: 'bar'
+                                          type: 'bar',
+                                          width: 900,
+                                          height: 500,
+                                          style: {
+                                              fontFamily: 'Verdana'
+                                          }
                                       },
                                       title: {
-                                          text: 'Keywords with Features'
+                                          text: 'Keywords'
                                       },
                                       xAxis: {
                                           categories: keywordTerm,
@@ -176,11 +192,11 @@ export class DinosaurComponent implements OnInit {
                                           layout: 'vertical',
                                           align: 'right',
                                           verticalAlign: 'top',
-                                          x: -40,
-                                          y: 80,
+                                          x: -5,
+                                          y: 40,
                                           floating: true,
-                                          borderWidth: 1,
-                                          shadow: true
+                                          borderWidth: 0.5,
+                                          shadow: false
                                       },
                                       credits: {
                                           enabled: false
@@ -290,17 +306,19 @@ export class DinosaurComponent implements OnInit {
         this.optionDefault = {
         chart: {
           type: 'scatter',
-          zoomType: 'xy'
+          zoomType: 'xy',
+          width: 450,
+          height: 300,
         },
-        title:  {text: 'Avg CTR and CR of Campaigns'},
+        title:  {text: 'Ad Campaigns'},
         legend: {enabled: false},
         xAxis:  {
           title: {
             enabled: true,
-            text: 'Avg CTR'
+            text: 'CTR'
           },
         },
-        yAxis: {title: {text: ' Avg CR'}},
+        yAxis: {title: {text: 'CR'}},
         plotOptions: {
           scatter: {
             cursor: 'pointer',

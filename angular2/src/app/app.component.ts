@@ -11,7 +11,7 @@ import { KeywordService } from './services/keywordService'
   styleUrls: ['./app.component.css'],
 })
 
-export class AppComponent {
+export class AppComponent {}
 
   // option: Object;
   // optionk: Object;
@@ -140,4 +140,4 @@ export class AppComponent {
   //     }
   //   }
   // }
-}
+// }
