@@ -42,7 +42,6 @@ delete(recommendation:RecommendationObj): void {
 
 ngOnInit(): void {
   this.getRecommendations();
-
 }
 onSelect(recommnedation): void {
   this.selectedRecommendation = recommnedation;

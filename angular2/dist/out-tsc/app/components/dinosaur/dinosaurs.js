@@ -23,6 +23,7 @@ var DinosaurComponent = (function () {
         this.series = [];
         this.secondarySeries = [];
         this.thirdSeries = [];
+        this.barchart = false;
     }
     DinosaurComponent.prototype.generateData = function (ctr, names, cr) {
         var ret = {}, ps = [], series = [], len = ctr.length;
@@ -151,6 +152,7 @@ var DinosaurComponent = (function () {
                                                                     data: keywordCR
                                                                 }]
                                                         };
+                                                        that.barchart = true;
                                                     });
                                                 }
                                             });
@@ -269,7 +271,7 @@ var DinosaurComponent = (function () {
 DinosaurComponent = __decorate([
     Component({
         selector: 'dinosaurs',
-        template: "\n            <!--\n            <ul><li *ngFor=\"let dino of dinos\">\n              {{dino.species}} - {{dino.campaing}} - {{dino.avg_ctr}} - {{dino.avg_cr}}\n            </li></ul>\n            -->\n              <div class=\"row\">\n                <div class=\"col-xs-6\" style=\"border-right:solid #EEEEEE;border-width: 1.5px;\">\n                  <chart [options]=\"optionDefault\">\n                  </chart>\n                </div>\n                <div class=\"col-xs-6\">\n                  <chart [options]=\"optionDinosaurs\">\n                  </chart>\n                </div>\n              </div>\n              <hr>\n              <div class=\"row\">\n              <div class=\"col-xs-12\">\n                <chart [options]=\"optionTable\">\n                </chart>\n              </div>\n              </div>\n            "
+        template: "<div class=\"row\">\n                <div class=\"col-xs-6\" style=\"border-right:solid #EEEEEE;border-width: 1.5px;\">\n                  <chart [options]=\"optionDefault\">\n                  </chart>\n                </div>\n                <div class=\"col-xs-6\">\n                  <chart [options]=\"optionDinosaurs\">\n                  </chart>\n                </div>\n              </div>\n              <hr>\n              <div class=\"row\">\n              <div class=\"col-xs-12\">\n                <chart id = \"keyword-graph\" [options]=\"optionTable\">\n                </chart>\n              </div>\n              </div>\n              <recommendations *ngIf=\"barchart\"></recommendations>\n            "
     }),
     __metadata("design:paramtypes", [DinosaurService,
         AdGroupService,

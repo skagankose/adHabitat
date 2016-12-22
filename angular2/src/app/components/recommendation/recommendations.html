@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
   </head>
 <body>
-<h2>RECOMMENDATIONS</h2>
+
 
 <!-- <ul class="recos">
 <li *ngFor="let reco of recommendations" (click)="onSelect(reco)"
@@ -21,16 +21,17 @@
     (click)="delete(reco); $event.stopPropagation()">x</button>
 </li>
 </ul> -->
-<div class = 'col-md-4'>
-<table class="table table-hover table-inverse" >
-  <thead>
-    <tr>
-      <th>Keywords</th>
-      <th>CTR</th>
-      <th>CR</th>
-      <th></th>
-    </tr>
-  </thead>
+<div class="row">
+<div class = 'offset-md-2 col-md-5 '>
+  <table class="table">
+    <thead  class="thead-inverse">
+      <tr>
+        <th style = "background-color: rgba(2, 107, 216, 0.54);">Recommended Keywords</th>
+        <th style = "background-color: rgba(2, 107, 216, 0.54);">CTR</th>
+        <th style = "background-color: rgba(2, 107, 216, 0.54);">CR</th>
+        <th style = "background-color: rgba(2, 107, 216, 0.54);"></th>
+      </tr>
+    </thead>
 <tbody>
 
 <tr  *ngFor="let reco of recommendations">
@@ -43,6 +44,7 @@
 
 </tbody>
 </table>
+</div>
 </div>
 
 

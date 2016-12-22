@@ -7,13 +7,7 @@ import { KeywordService } from '../../services/keywordService'
 
 @Component({
   selector: 'dinosaurs',
-  template: `
-            <!--
-            <ul><li *ngFor="let dino of dinos">
-              {{dino.species}} - {{dino.campaing}} - {{dino.avg_ctr}} - {{dino.avg_cr}}
-            </li></ul>
-            -->
-              <div class="row">
+  template: `<div class="row">
                 <div class="col-xs-6" style="border-right:solid #EEEEEE;border-width: 1.5px;">
                   <chart [options]="optionDefault">
                   </chart>
@@ -26,10 +20,11 @@ import { KeywordService } from '../../services/keywordService'
               <hr>
               <div class="row">
               <div class="col-xs-12">
-                <chart [options]="optionTable">
+                <chart id = "keyword-graph" [options]="optionTable">
                 </chart>
               </div>
               </div>
+              <recommendations *ngIf="barchart"></recommendations>
             `
 })
 export class DinosaurComponent implements OnInit {
@@ -45,6 +40,7 @@ export class DinosaurComponent implements OnInit {
   thirdSeries = [];
   optionDefault: Object;
   optionDinosaurs: Object;
+  barchart:boolean = false;
 
   constructor(private dinosaurService: DinosaurService,
               private adGroupService: AdGroupService,
@@ -209,7 +205,7 @@ export class DinosaurComponent implements OnInit {
                                           data: keywordCR
                                       }]
                                     }
-
+                                    that.barchart=true;
                                   })
                                 }
                               })
