@@ -120,6 +120,9 @@ var DinosaurComponent = (function () {
                                                             },
                                                             yAxis: {
                                                                 min: 0,
+                                                                title: {
+                                                                    text: 'Rate',
+                                                                },
                                                             },
                                                             plotOptions: {
                                                                 bar: {

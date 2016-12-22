@@ -173,6 +173,9 @@ export class DinosaurComponent implements OnInit {
                                       },
                                       yAxis: {
                                           min: 0,
+                                          title: {
+                                              text: 'Rate',
+                                          },
                                       },
                                       plotOptions: {
                                           bar: {
