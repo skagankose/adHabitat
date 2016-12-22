@@ -28,7 +28,7 @@ var DinosaurComponent = (function () {
         core_1.Component({
             selector: 'dinosaurs',
             template: "<ul><li *ngFor=\"let dino of dinos\">{{dino.species}} - {{dino.campaing}} - {{dino.avg_ctr}} - {{dino.avg_cr}}</li></ul>"
-        }), 
+        }),
         __metadata('design:paramtypes', [dinosaurService_1.DinosaurService])
     ], DinosaurComponent);
     return DinosaurComponent;

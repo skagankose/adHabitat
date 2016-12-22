@@ -18,12 +18,13 @@ var FileUploadComponent = (function () {
     }
     FileUploadComponent.prototype.upload = function () {
         var _this = this;
+        console.log(this.el.nativeElement.firstElementChild);
         var inputEl = this.el.nativeElement.firstElementChild;
         if (inputEl.files.length > 0) {
             var file = inputEl.files[0];
             console.log(file);
             var headers = new Headers({ 'Content-Type': 'application/json; charset=UTF-8' });
-            this.http.post('http://0.0.0.0:8000/upload/', file, { headers: headers })
+            this.http.post('http://127.0.0.1:8000/upload/', file, { headers: headers })
                 .subscribe(function (error) { return _this.errorMessage = error; });
         }
     };

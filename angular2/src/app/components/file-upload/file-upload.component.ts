@@ -16,12 +16,15 @@ export class FileUploadComponent {
 
     upload() {
 
+        console.log(this.el.nativeElement.firstElementChild);
+
+
         let inputEl = this.el.nativeElement.firstElementChild;
         if (inputEl.files.length > 0) { // a file was selected
             let file:File = inputEl.files[0];
             console.log(file);
         let headers =  new Headers({'Content-Type': 'application/json; charset=UTF-8'});
-            this.http.post('http://0.0.0.0:8000/upload/', file, { headers: headers})
+            this.http.post('http://127.0.0.1:8000/upload/', file, {headers: headers})
 
 
           .subscribe(error =>  this.errorMessage = <any>error)
