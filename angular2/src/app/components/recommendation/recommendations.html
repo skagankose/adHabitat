@@ -1,15 +1,12 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Required meta tags always come first -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
   </head>
-<body>
+<body> -->
 
 
 <!-- <ul class="recos">
@@ -22,14 +19,15 @@
 </li>
 </ul> -->
 <div class="row">
-<div class = 'offset-md-2 col-md-5 '>
+<div class = 'col-xs-12'>
   <table class="table">
-    <thead  class="thead-inverse">
+    <thead>
       <tr>
-        <th style = "background-color: rgba(2, 107, 216, 0.54);">Recommended Keywords</th>
-        <th style = "background-color: rgba(2, 107, 216, 0.54);">CTR</th>
-        <th style = "background-color: rgba(2, 107, 216, 0.54);">CR</th>
-        <th style = "background-color: rgba(2, 107, 216, 0.54);"></th>
+        <th style = "border-bottom: 2px solid;background-color: rgb(126, 182, 234);color: rgb(67, 62, 72);font-weight: 550;">Recommended Keywords</th>
+        <th style = "border-bottom: 2px solid;background-color: rgb(126, 182, 234);color: rgb(67, 62, 72);font-weight: 500;">CTR</th>
+        <th style = "border-bottom: 2px solid;background-color: rgb(126, 182, 234);color: rgb(67, 62, 72);font-weight: 500;">CR</th>
+        <!-- <th style = "background-color: rgb(126, 182, 234);color: rgb(67, 62, 72);"></th> -->
+
       </tr>
     </thead>
 <tbody>
@@ -39,15 +37,16 @@
   <td >{{reco.keyword}}</td>
   <td>{{reco.ctr}}</td>
   <td>{{reco.cr}}</td>
-  <td>          <button class="delete"
-            (click)="reco.hideElement=!reco.hideElement">x</button></td>
+  <!-- <td>
+    <button class="delete" (click)="reco.hideElement=!reco.hideElement">x</button>
+  </td> -->
 
 </tbody>
 </table>
 </div>
 </div>
 
-
+<!--
 
 </body>
-</html>
+</html> -->

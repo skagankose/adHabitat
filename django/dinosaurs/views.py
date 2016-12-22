@@ -75,7 +75,12 @@ def uploads(request):
                     keyword.save()
                     adgroupModel.keywords.add(keyword)
 
+                pk = adgroupModel.id
+                adgroupModel.title = pk
                 adgroupModel.save()
+
+            pk = campaignModel.id
+            campaignModel.species = pk
             campaignModel.save()
 
         return Response(status=204)
